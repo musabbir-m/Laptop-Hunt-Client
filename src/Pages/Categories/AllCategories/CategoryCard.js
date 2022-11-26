@@ -1,16 +1,17 @@
 import React from 'react';
+import { HiArrowCircleRight, HiArrowNarrowRight } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
-const CategoryCard = () => {
+
+const CategoryCard = ({category}) => {
+    const {brandName, _id}= category
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
-  <div className="card-body">
-    <h2 className="card-title">Card title!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
+        <Link to= {`/categories/:${_id}`}>
+        <div className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            <h2 className=" justify-center text-3xl flex flex-row text-">{brandName} <HiArrowNarrowRight></HiArrowNarrowRight></h2>
+        </div>
+        </Link>
+        
     );
 };
 
