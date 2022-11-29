@@ -1,4 +1,5 @@
 import CategoryProducts from "../../Pages/Categories/CategoryProducts/CategoryProducts";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main");
@@ -26,7 +27,7 @@ const router= createBrowserRouter([
             },
             {
                 path: '/categories/:id',
-                element: <CategoryProducts></CategoryProducts>,
+                element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
                 loader: ({params})=>
                 fetch(`http://localhost:5000/categories/${params.id}`)
             }
