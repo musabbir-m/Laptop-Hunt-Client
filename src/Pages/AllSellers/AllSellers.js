@@ -28,6 +28,7 @@ const AllSellers = () => {
   });
 
   const deleteSeller = (seller) => {
+    
     fetch(`http://localhost:5000/sellers/${seller._id}`, {
       method: "DELETE",
     })
