@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import useCheckAdmin from "../hooks/useCheckAdmin";
+import useCheckBuyer from "../hooks/useCheckBuyer";
 import useCheckSeller from "../hooks/useCheckSeller";
 
 const DashboardLayout = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useCheckAdmin(user?.email);
   const [isSeller] = useCheckSeller(user?.email);
+  const [isBuyer]= useCheckBuyer(user?.email)
 
   const handleLogout = () => {
     logOut().then((data) => {});
@@ -85,7 +87,7 @@ const DashboardLayout = () => {
           type="checkbox"
           className="drawer-toggle"
         />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex mt-5 justify-center">
           <Outlet></Outlet>
         </div>
         <div className="drawer-side">
@@ -93,9 +95,7 @@ const DashboardLayout = () => {
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
            
            {/* wrap buyers with  buyer route */}
-            <li>
-             My Orders
-            </li>
+           
 
             {isAdmin && (
                 <>
@@ -119,10 +119,18 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
+            {isBuyer && (
+              <>
+                <li>
+                  <Link to="/dashboard/myorders">My orders</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/allusers">All Users</Link>
+                </li>
+              </>
+            )}
 
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
+          
           </ul>
         </div>
       </div>
