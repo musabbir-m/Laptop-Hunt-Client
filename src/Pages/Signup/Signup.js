@@ -23,12 +23,14 @@ const Signup = () => {
         console.log(user);
         //toast('user created successfully')
         saveUser(data.name, data.email, data.role);
+        alert('success')
+        navigate('/')
       })
       .catch((err) => setSignupError(err));
   };
 
   const saveUser = (name, email, role) => {
-    const user = { name, email, role };
+    const user = { name, email, role, verified: 'false' };
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {

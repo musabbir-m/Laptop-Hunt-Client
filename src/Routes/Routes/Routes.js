@@ -8,6 +8,7 @@ import MyOrders from "../../Pages/MyOrders/MyOrders";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import Blog from "../../Pages/Blog/Blog";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main");
@@ -38,6 +39,10 @@ const router= createBrowserRouter([
                 element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
                 loader: ({params})=>
                 fetch(`http://localhost:5000/categories/${params.id}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     },

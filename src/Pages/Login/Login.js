@@ -12,7 +12,7 @@ const Login = () => {
   } = useForm();
 
   const { Login} = useContext(AuthContext)
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
   const [loginError, setLoginError] = useState("");
   //to take to the right route after login start
   const location = useLocation();
