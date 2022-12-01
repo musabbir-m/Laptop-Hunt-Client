@@ -18,7 +18,7 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
 
-  const {categoriId, setCategoriId}= useState('')
+ 
   //   add product
   const addProduct = (data) => {
     console.log(data);
@@ -36,21 +36,21 @@ const AddProduct = () => {
             console.log(imgData.data.url);
           
             //prouct data
-            if(data.brand==='asus'){
-               setCategoriId('1')
-            }
+           
             const product= {
                 productName: data.name,
                 brandName: data.brand,
                 price: data.price,
                 condition: data.condition,
                 purchaseDate: data.purchaseDate,
-                postDate: new Date(),
+                postDate: new Date().toJSON().slice(0,10)
+                ,
                 yearsUsed: data.useDuration,
                 location: data.location,
                 mobile: data.phone ,
                 sellerEmail: user?.email,
-                category: categoriId
+                img: imgData.data.url,
+                description: data.description
 
             }
 
@@ -73,7 +73,7 @@ const AddProduct = () => {
 
   return (
     <div className="mb-10">
-      <h2 className="text-4xl text-purple-600 font-bold p3 mb-5 text-center ">
+      <h2 className="text-4xl  font-bold p3 mb-5 text-center ">
         Add A Product
       </h2>
       <form onSubmit={handleSubmit(addProduct)}>
