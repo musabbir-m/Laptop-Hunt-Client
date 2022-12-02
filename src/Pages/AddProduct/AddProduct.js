@@ -12,70 +12,68 @@ const AddProduct = () => {
 
   const { user } = useContext(AuthContext);
   console.log(user);
-  const imgbbKey= process.env.REACT_APP_imgbb
-  console.log(imgbbKey)
+  const imgbbKey = process.env.REACT_APP_imgbb;
+  console.log(imgbbKey);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const navigate= useNavigate()
- 
+  const navigate = useNavigate();
+
   //   add product
   const addProduct = (data) => {
     console.log(data);
-    const image= data.img[0]
-    const formData= new FormData()
-    formData.append('image', image)
-    const url= `https://api.imgbb.com/1/upload?&key=${imgbbKey}`
+    const image = data.img[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?&key=${imgbbKey}`;
     fetch(url, {
-        method: 'POST',
-        body: formData
+      method: "POST",
+      body: formData,
     })
-    .then(res=> res.json())
-    .then(imgData=> {
-        if (imgData.success){
-            console.log(imgData.data.url);
-          
-            //prouct data
-           
-            const product= {
-                productName: data.name,
-                brandName: data.brand,
-                price: data.price,
-                condition: data.condition,
-                purchaseDate: data.purchaseDate,
-                postDate: new Date().toJSON().slice(0,10)
-                ,
-                yearsUsed: data.useDuration,
-                location: data.location,
-                mobile: data.phone ,
-                sellerEmail: user?.email,
-                img: imgData.data.url,
-                description: data.description,
-                advertised: 'false',
-                salesStatus: 'unsold'
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          console.log(imgData.data.url);
 
-            }
+          //prouct data
 
-            console.log(product);
-            //post product
-            fetch("http://localhost:5000/product", {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(product)
-            })
-            .then(res=> res.json())
-            .then(data=> {
-                console.log(data)
-                toast('Product Added Successfully')
-            })
+          const product = {
+            productName: data.name,
+            brandName: data.brand,
+            price: data.price,
+            condition: data.condition,
+            purchaseDate: data.purchaseDate,
+            postDate: new Date().toJSON().slice(0, 10),
+            yearsUsed: data.useDuration,
+            location: data.location,
+            mobile: data.phone,
+            sellerEmail: user?.email,
+            img: imgData.data.url,
+            description: data.description,
+            advertised: "false",
+            salesStatus: "unsold",
+          };
+
+          console.log(product);
+          //post product
+          fetch("https://laptopserver.vercel.app/product", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              toast("Product Added Successfully");
+            });
         }
-        navigate('/dashboard/myproducts')
-    })
+        navigate("/dashboard/myproducts");
+      });
   };
 
   return (
@@ -146,7 +144,7 @@ const AddProduct = () => {
           </div>
           <div>
             <label htmlFor="used" className={labelClass}>
-             Total used
+              Total used
             </label>
             <input
               {...register("useDuration")}
@@ -157,22 +155,21 @@ const AddProduct = () => {
               required
             ></input>
           </div>
-          
         </div>
 
         <div>
-            <label htmlFor="location" className={labelClass}>
-              Location
-            </label>
-            <input
-              {...register("location")}
-              type="text"
-              id="location"
-              className={inputClass}
-              placeholder="eg: Dhaka"
-              required
-            ></input>
-          </div>
+          <label htmlFor="location" className={labelClass}>
+            Location
+          </label>
+          <input
+            {...register("location")}
+            type="text"
+            id="location"
+            className={inputClass}
+            placeholder="eg: Dhaka"
+            required
+          ></input>
+        </div>
 
         <div>
           <label htmlFor="mobile" className={labelClass}>
@@ -208,7 +205,6 @@ const AddProduct = () => {
           </label>
           <input
             {...register("img")}
-          
             type="file"
             id="img"
             className={inputClass}
@@ -227,7 +223,7 @@ const AddProduct = () => {
         </div>
 
         <input
-           className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           type="submit"
           value="Add Product"
         />

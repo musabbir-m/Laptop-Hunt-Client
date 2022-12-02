@@ -4,7 +4,7 @@ import Loading from "../../../Components/Loading/Loading";
 import CategoryCard from "./CategoryCard";
 
 const AllCategories = () => {
-  const url = "http://localhost:5000/categories";
+  const url = "https://laptopserver.vercel.app/categories";
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -19,7 +19,9 @@ const AllCategories = () => {
   }
   return (
     <div>
-      <h2 className="text-5xl text-center text-orange-600 my-5 ">All Laptop Brands</h2>
+      <h2 className="text-5xl text-center text-orange-600 my-5 ">
+        All Laptop Brands
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {categories.map((category) => (
           <CategoryCard key={category._id} category={category}></CategoryCard>

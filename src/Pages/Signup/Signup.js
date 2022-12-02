@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Signup = () => {
-  const [signupError, setSignupError] = useState('');
+  const [signupError, setSignupError] = useState("");
   const { signUp, githubSignIn, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -23,24 +23,26 @@ const Signup = () => {
         const user = result.user;
 
         console.log(user);
-        toast('User Created Successfully')
+        toast("User Created Successfully");
         //updateUser
-        const userInfo= {
-          displayName: data.name
-        }
+        const userInfo = {
+          displayName: data.name,
+        };
         updateUser(userInfo)
-        .then(()=>{})
-        .catch(err=> {console.log(err)})
+          .then(() => {})
+          .catch((err) => {
+            console.log(err);
+          });
         //toast('user created successfully')
         saveUser(data.name, data.email, data.role);
-        navigate('/')
+        navigate("/");
       })
       .catch((err) => setSignupError(err.message));
   };
 
   const saveUser = (name, email, role) => {
-    const user = { name, email, role, verified: 'false' };
-    fetch("http://localhost:5000/users", {
+    const user = { name, email, role, verified: "false" };
+    fetch("https://laptopserver.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,17 +88,15 @@ const Signup = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text font-bold">
-                Select user-type
-              </span>
+              <span className="label-text font-bold">Select user-type</span>
             </label>
             <select className="select select-bordered" {...register("role")}>
-              <option value='buyer'>Buyer</option>
-              <option  value='seller'>Seller</option>
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
             </select>
           </div>
 
-       {/*  */}
+          {/*  */}
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Password</span>
