@@ -65,7 +65,7 @@ const DashboardLayout = () => {
               {navbarItems}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">LaptopHunt</a>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">LaptopHunt</Link>
         </div>
 
         <div className="navbar-end hidden lg:flex ">

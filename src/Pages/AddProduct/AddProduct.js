@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const AddProduct = () => {
@@ -18,6 +20,7 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
 
+  const navigate= useNavigate()
  
   //   add product
   const addProduct = (data) => {
@@ -68,8 +71,10 @@ const AddProduct = () => {
             .then(res=> res.json())
             .then(data=> {
                 console.log(data)
+                toast('Product Added Successfully')
             })
         }
+        navigate('/dashboard/myproducts')
     })
   };
 
