@@ -8,14 +8,7 @@ const ProductCard = ({ product, setCurrentProduct }) => {
 const url= `http://localhost:5000/user?email=${product.sellerEmail}`
 
 //Loading Seller Data by Axios
-// try{
-//   const response= axios.get(url)  
-//   console.log(response.data);
-//   setSellr(response.data)
-// }
-// catch(err){
- 
-// }
+
 
 useEffect(()=>{
 axios.get(url)
