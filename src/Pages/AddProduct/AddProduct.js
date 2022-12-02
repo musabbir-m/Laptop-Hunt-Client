@@ -51,7 +51,8 @@ const AddProduct = () => {
                 sellerEmail: user?.email,
                 img: imgData.data.url,
                 description: data.description,
-                advertised: 'false'
+                advertised: 'false',
+                salesStatus: 'unsold'
 
             }
 

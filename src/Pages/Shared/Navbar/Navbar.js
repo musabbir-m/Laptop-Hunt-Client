@@ -14,6 +14,11 @@ const Navbar = () => {
       <li>
         <Link to="/"> Home</Link>
       </li>
+     
+      <li>
+        <Link to='/blog'>Blog</Link>
+      </li>
+
       {user ? (
         <>
          <li>
@@ -23,7 +28,7 @@ const Navbar = () => {
          <Link to='/dashboard'>Dashboard</Link>
         </li>
         <li>
-         {user?.email}
+         {user?.displayName}
         </li>
         </>
        
@@ -32,9 +37,6 @@ const Navbar = () => {
           <Link to="/login">Login</Link>
         </li>
       )}
-      <li>
-        <Link to='/blog'>Blog</Link>
-      </li>
     </>
   );
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import BookingModal from "../../BookingModal/BookingModal";
 
 const ProductCard = ({ product, setCurrentProduct }) => {
+  
   const {
     productName,
     description,

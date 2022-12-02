@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Signup = () => {
-  const [signupError, setSignupError] = useState("");
-  const { signUp, githubSignIn } = useContext(AuthContext);
+  const [signupError, setSignupError] = useState('');
+  const { signUp, githubSignIn, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const {
@@ -20,13 +21,21 @@ const Signup = () => {
     signUp(data.email, data.password)
       .then((result) => {
         const user = result.user;
+
         console.log(user);
+        toast('User Created Successfully')
+        //updateUser
+        const userInfo= {
+          displayName: data.name
+        }
+        updateUser(userInfo)
+        .then(()=>{})
+        .catch(err=> {console.log(err)})
         //toast('user created successfully')
         saveUser(data.name, data.email, data.role);
-        alert('success')
         navigate('/')
       })
-      .catch((err) => setSignupError(err));
+      .catch((err) => setSignupError(err.message));
   };
 
   const saveUser = (name, email, role) => {

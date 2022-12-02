@@ -10,12 +10,13 @@ const BookingModal = ({currentProduct, setCurrentProduct}) => {
     const product= currentProduct.productName 
     const price= currentProduct.price 
     const phone= form.phone.value 
-    const email= user?.email
+    const buyerEmail= user?.email
     const buyerName= user?.displayName
+    const sellerEmail= currentProduct.sellerEmail
     const location= form.location.value 
     
     const booking= {
-      product, price, phone, email, buyerName, location 
+      product, price, phone, buyerEmail, buyerName, location, sellerEmail
     }
 
     //post booking

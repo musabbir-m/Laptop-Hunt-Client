@@ -10,7 +10,7 @@ const AllBuyers = () => {
       isLoading,
       refetch,
     } = useQuery({
-      queryKey: ["sellers"],
+      queryKey: ["buyers"],
       queryFn: async () => {
         const res = await fetch(url);
         const data = await res.json();
