@@ -114,7 +114,9 @@ const DashboardLayout = () => {
                 <li>
                   <Link to="/dashboard/addproduct">Add Product</Link>
                 </li>
-                
+                <li>
+                  <Link to="/dashboard/myproducts">My Products </Link>
+                </li>
               </>
             )}
             {isBuyer && (
@@ -122,6 +124,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link to="/dashboard/myorders">My orders</Link>
                 </li>
+                
                 
               </>
             )}

@@ -50,7 +50,8 @@ const AddProduct = () => {
                 mobile: data.phone ,
                 sellerEmail: user?.email,
                 img: imgData.data.url,
-                description: data.description
+                description: data.description,
+                advertised: 'false'
 
             }
 
